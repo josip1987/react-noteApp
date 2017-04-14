@@ -1,12 +1,13 @@
 var React = require('react');
 
-var Main = React.createClass ({
+var TodoApp = React.createClass ({
     render: function() {
         return (
             <div>
+                asdf
             </div>
         );  
     }
 })
 
-module.exports = Main;
+module.exports = TodoApp;
