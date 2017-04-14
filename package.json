@@ -1,7 +1,7 @@
 {
-  "name": "boilerplate",
+  "name": "react-noteApp",
   "version": "1.0.0",
-  "description": "React Boilerplate",
+  "description": "React Note App",
   "main": "index.js",
   "scripts": {
      "test": "karma start",
