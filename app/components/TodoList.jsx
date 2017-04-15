@@ -8,7 +8,7 @@ var TodoList = React.createClass ({
             return todos.map((todo) => {
                 return (
                     //add unique key prop to keep track of individual components
-                    <Todo key={todo.id} {...todo}/>
+                    <Todo key={todo.id} {...todo} onToggle={this.props.onToggle}/>
                 );
             });
         };
