@@ -5,6 +5,11 @@ var TodoList = React.createClass ({
     render: function() {
         var { todos } = this.props;
         var renderTodos = () => {
+            if(todos.length === 0) {
+                return (
+                    <p className="container__message">No tasks</p>
+                );
+            }
             return todos.map((todo) => {
                 return (
                     //add unique key prop to keep track of individual components

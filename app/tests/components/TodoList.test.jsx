@@ -1,6 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var $ = require('jQuery');
+var $ = require('jquery');
 var expect = require('expect');
 var TestUtils = require('react-addons-test-utils');
 
@@ -29,5 +29,13 @@ describe('TodoList', () => {
         
     expect(todosComponents.length).toBe(todos.length);
         
+    });
+    
+    it('should render empty message if no tasks', () => {
+        var todos = [];
+        var todoList = TestUtils.renderIntoDocument(<TodoList todos={todos} />);
+        var $el = $(ReactDOM.findDOMNode(todoList));
+           
+        expect($el.find('.container__message').length).toBe(1);
     });
 });
