@@ -19,8 +19,8 @@ export var AddTodo = React.createClass({
         return (
             <div className="container__footer">
                 <form ref="form" onSubmit={this.handleSubmit} className="form">
-                    <input type="text" ref="todoText" placeholder="Add Todo" />
-                    <button className="button expanded">Add Todo</button>
+                    <input type="text" ref="todoText" placeholder="Add Task" />
+                    <button className="button expanded">Add Task</button>
                 </form>
             </div>
         );  
