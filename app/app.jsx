@@ -5,15 +5,15 @@ var TodoApp = require('TodoApp');
 
 var actions = require('actions');
 var store = require('configureStore').configure();
-var TodoAPI = require('TodoAPI');
+var TodoApi = require('TodoApi');
 
 store.subscribe(() => {
     var state = store.getState();
     console.log('New state', state);
-    TodoAPI.setTodos(state.todos);
+    TodoApi.setTodos(state.todos);
 });
 
-var initialTodos = TodoAPI.getTodos();
+var initialTodos = TodoApi.getTodos();
 store.dispatch(actions.addTodos(initialTodos));
 
 // Load Foundation

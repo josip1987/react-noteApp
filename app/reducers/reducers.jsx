@@ -1,4 +1,4 @@
-var uuid = require('node-uuid');
+var uuid = require('uuid');
 var moment = require('moment');
 
 export var searchTextReducer = (state = '', action) => {
@@ -25,8 +25,8 @@ export var todosReducer = (state = [], action) => {
             return [
                 ...state,
                 {
-                    id: uuid(),
                     text: action.text,
+                    id: uuid(),
                     completed: false,
                     createdAt: moment().unix(),
                     completedAt: undefined                   
@@ -36,9 +36,9 @@ export var todosReducer = (state = [], action) => {
             return state.map((todo) => {
                 if(todo.id === action.id) {
                     var nextCompleted = !todo.completed;
-                    
+
                     return {
-                        todo,
+                        ...todo,
                         completed: nextCompleted,
                         completedAt: nextCompleted ? moment().unix() : undefined
                     };

@@ -1,7 +1,7 @@
 var React = require('react');
 var { connect } = require('react-redux');
 import Todo from 'Todo';
-var TodoAPI = require('TodoAPI');
+var TodoApi = require('TodoApi');
 
 export var TodoList = React.createClass ({
     render: function() {
@@ -12,7 +12,7 @@ export var TodoList = React.createClass ({
                     <p className="container__message">No tasks</p>
                 );
             }
-            return TodoAPI.filterTodos(todos, showCompleted, searchText).map((todo) => {
+            return TodoApi.filterTodos(todos, showCompleted, searchText).map((todo) => {
                 return (
                     //add unique key prop to keep track of individual components
                     <Todo key={todo.id} {...todo} />
