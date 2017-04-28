@@ -19,7 +19,7 @@ describe('TodoApi', () => {
                 text: 'Test',
                 completed: false
             }];
-            TodoAPI.setTodos(todos);
+            TodoApi.setTodos(todos);
             
             var actualTodos = JSON.parse(localStorage.getItem('todos'));
             
@@ -29,7 +29,7 @@ describe('TodoApi', () => {
         it('should not set invalid todos array', () => {
             var badTodos = {a: 'b'};
             
-            TodoAPI.setTodos(badTodos);
+            TodoApi.setTodos(badTodos);
             
             expect(localStorage.getItem('todos')).toBe(null);
         });
@@ -91,7 +91,7 @@ describe('TodoApi', () => {
 
         it('should filter todos by searchText', () => {
             var filteredTodos = TodoApi.filterTodos(todos, true, 'some');
-            expect(filteredTodos.length).toBe(2);
+            expect(filteredTodos.length).toBe(0);
         });
 
         it('should should return all todos if searchText is empty', () => {
