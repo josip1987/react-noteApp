@@ -7,14 +7,19 @@ var actions = require('actions');
 var store = require('configureStore').configure();
 var TodoApi = require('TodoApi');
 
-store.subscribe(() => {
-    var state = store.getState();
-    console.log('New state', state);
-    TodoApi.setTodos(state.todos);
-});
 
-var initialTodos = TodoApi.getTodos();
-store.dispatch(actions.addTodos(initialTodos));
+// only for local storage, change to firebase, login with github
+
+//store.subscribe(() => {
+//    var state = store.getState();
+//    console.log('New state', state);
+//    TodoApi.setTodos(state.todos);
+//});
+
+//var initialTodos = TodoApi.getTodos();
+//store.dispatch(actions.addTodos(initialTodos));
+
+store.dispatch(actions.startAddTodos());
 
 // Load Foundation
 require('style!css!foundation-sites/dist/css/foundation.min.css');

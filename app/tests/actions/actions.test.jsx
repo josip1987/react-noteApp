@@ -2,7 +2,7 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 var expect = require('expect');
 
-import firebase, {firebaseRef} from 'firebase/';
+import firebase, {firebaseRef} from 'firebase';
 var actions = require('actions');
 
 var createMockStore = configureMockStore([thunk]);
@@ -112,7 +112,7 @@ describe('Actions', () => {
                 
                 expect(mockActions[0]).toInclude({
                     type: 'UPDATE_TODO',
-                    id: testTodoRef.key,
+                    id: testTodoRef.key
                 });
                 
                 expect(mockActions[0].updates).toInclude({
