@@ -10,6 +10,7 @@
 *~
 *.sass-cache
 node_modules/
+public/bundle.js
 .tmp/
 
 # OS or Editor folders
