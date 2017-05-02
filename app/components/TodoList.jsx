@@ -7,12 +7,14 @@ export var TodoList = React.createClass ({
     render: function() {
         var { todos, showCompleted, searchText } = this.props;
         var renderTodos = () => {
-            if(todos.length === 0) {
+            var filteredTodos = TodoApi.filterTodos(todos, showCompleted, searchText);
+            
+            if(filteredTodos.length === 0) {
                 return (
                     <p className="container__message">No tasks</p>
                 );
             }
-            return TodoApi.filterTodos(todos, showCompleted, searchText).map((todo) => {
+            return filteredTodos.map((todo) => {
                 return (
                     //add unique key prop to keep track of individual components
                     <Todo key={todo.id} {...todo} />
