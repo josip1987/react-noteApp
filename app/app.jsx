@@ -5,7 +5,7 @@ var TodoApp = require('TodoApp');
 
 var actions = require('actions');
 var store = require('configureStore').configure();
-var TodoApi = require('TodoApi');
+import TodoApi from 'TodoApi';
 
 
 // only for local storage, change to firebase, login with github
