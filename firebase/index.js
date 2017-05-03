@@ -2,12 +2,10 @@ import firebase from '../node_modules/firebase';
 
 try {
     var config = {
-        apiKey: "AIzaSyDLHDNyFnoIzBd_OklgG4he5sktZPpf6I8",
-        authDomain: "noteapp-af628.firebaseapp.com",
-        databaseURL: "https://noteapp-af628.firebaseio.com",
-        projectId: "noteapp-af628",
-        storageBucket: "noteapp-af628.appspot.com",
-        messagingSenderId: "1081463218364"
+        apiKey: process.env.API_KEY,
+        authDomain: process.env.AUTH_DOMAIN,
+        databaseURL: process.env.DATABASE_URL,
+        storageBucket: process.env.STORAGE_BUCKET
     };
     
     firebase.initializeApp(config);   
