@@ -1,23 +1,13 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var { Provider } = require('react-redux');
-var TodoApp = require('TodoApp');
+var { Route, Router, IndexRoute, hashHistory } = require('react-router');
 
 var actions = require('actions');
 var store = require('configureStore').configure();
-import TodoApi from 'TodoApi';
-
-
-// only for local storage, change to firebase, login with github
-
-//store.subscribe(() => {
-//    var state = store.getState();
-//    console.log('New state', state);
-//    TodoApi.setTodos(state.todos);
-//});
-
-//var initialTodos = TodoApi.getTodos();
-//store.dispatch(actions.addTodos(initialTodos));
+var TodoApi = require('TodoApi');
+import Login from 'Login';
+import TodoApp from 'TodoApp';
 
 store.dispatch(actions.startAddTodos());
 
@@ -30,7 +20,12 @@ require('style!css!sass!applicationStyles');
 
 ReactDOM.render(
   <Provider store={store}>
-    <TodoApp />
+    <Router history={hashHistory}>
+        <Route path="/">
+            <Route path="todos" component={TodoApp} />
+            <IndexRoute component={Login} />
+        </Route>
+    </Router>
   </Provider>,
   document.getElementById('app')
 );
