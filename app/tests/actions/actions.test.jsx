@@ -86,52 +86,71 @@ describe('Actions', () => {
         expect(res).toEqual(action);
     });
     
-        describe('tests with firebase todos', () => {
-            var testTodoRef;
-
-            beforeEach((done) => {
-            var todosRef = firebaseRef.child('todos');
-
-            todosRef.remove().then(() => {
-            testTodoRef = firebaseRef.child('todos').push();
-
-                return testTodoRef.set({
-                  text: 'text',
-                  completed: false,
-                  createdAt: 123
-                })
-            })
-          .then(() => done())
-          .catch(done);
-        });
-
-        afterEach((done) => {
-          testTodoRef.remove().then(() => done());
-        });
+    it('should generate login action object', () => {
+        const action = {
+            type: 'LOGIN',
+            uid: '123abc'
+        };
+        const res = actions.login(action.uid);
         
-        it('should toggle todo and dispatch UPDATE_TODO action', (done) => {
-            const store = createMockStore({});
-            const action = actions.startToggleTodo(testTodoRef.key, true);
-            
-            store.dispatch(action).then(() => {
-                const mockActions = store.getActions();
-                
-                expect(mockActions[0]).toInclude({
-                    type: 'UPDATE_TODO',
-                    id: testTodoRef.key
-                });
-                
-                expect(mockActions[0].updates).toInclude({
-                    completed: true
-                });
-                
-                expect(mockActions[0].updates.completedAt).toExist();
-                
-                done();
-                
-            }, done); //if done is called without args mocha assumes it fails and prints err msg
-        });
+        expect(res).toEqual(action);
+    });
     
+    it('should generate logout action object', () => {
+        const action = {
+            type: 'LOGOUT'
+        };
+        const res = actions.logout();
+        
+        expect(res).toEqual(action);
+    });
+    
+    describe('tests with firebase todos', () => {
+        var testTodoRef;
+
+        beforeEach((done) => {
+        var todosRef = firebaseRef.child('todos');
+
+        todosRef.remove().then(() => {
+        testTodoRef = firebaseRef.child('todos').push();
+
+            return testTodoRef.set({
+              text: 'text',
+              completed: false,
+              createdAt: 123
+            })
+        })
+      .then(() => done())
+      .catch(done);
+    });
+
+    afterEach((done) => {
+      testTodoRef.remove().then(() => done());
+    });
+
+    it('should toggle todo and dispatch UPDATE_TODO action', (done) => {
+        const store = createMockStore({});
+        const action = actions.startToggleTodo(testTodoRef.key, true);
+
+        store.dispatch(action).then(() => {
+            const mockActions = store.getActions();
+
+            expect(mockActions[0]).toInclude({
+                type: 'UPDATE_TODO',
+                id: testTodoRef.key
+            });
+
+            expect(mockActions[0].updates).toInclude({
+                completed: true
+            });
+
+            expect(mockActions[0].updates.completedAt).toExist();
+
+            done();
+
+        }, done); //if done is called without args mocha assumes it fails and prints err msg
+    });
+
         it('should populate todos and dispatch ADD_TODOS', (done) => {
             const store = createMockStore({});
             const action = actions.startAddTodos();
